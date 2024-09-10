@@ -42,6 +42,7 @@ with st.sidebar:
     if analizar :=st.button("Analizar"):
         if len(graficas) >1 and len(juegos)>1:
             df = df[df["GAME"].isin(juegos)]
+            st.success("Analisis listo puede volver a la pagina principal")
         else:
             st.warning("Porfavor verifique que estan todos los parametros")
 
