@@ -42,6 +42,7 @@ with st.sidebar:
     if analizar :=st.button("Analizar"):
         if len(graficas) >1 and len(juegos)>1:
             df = df[df["GAME"].isin(juegos)]
+            st.success("Analisis listo puede volver a la pagina principal")
         else:
             st.warning("Porfavor verifique que estan todos los parametros")
 
@@ -74,6 +75,8 @@ def barra(df):
         ax.tick_params(axis='x', colors='white')  # Ticks del eje X en blanco
         ax.tick_params(axis='y', colors='white')  # Ticks del eje Y en blanco
         ax.set_title("Graficas de barra", color = "white")
+        plt.xticks(rotation=90,ha='right')
+        ax.set_ylim(0, max(df["GAMERS"]) if len(df["GAMERS"]) > 0 else 1)  
         st.pyplot(fig)
     else:
         st.warning("seleccione al menos 2 juegos")
@@ -86,6 +89,7 @@ def linea(df):
     ax.set_facecolor('none')  # Hacer transparente el fondo del eje
     ax.set_xlabel("Juegos",color="white")
     ax.set_ylabel("Puntuacion", color="white")
+    plt.xticks(rotation=90,ha='right')
     ax.tick_params(axis='x', colors='white')  # Ticks del eje X en blanco
     ax.tick_params(axis='y', colors='white')  # Ticks del eje Y en blanco
     st.pyplot(fig)
